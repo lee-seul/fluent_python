@@ -5,6 +5,8 @@ from array import array
 import reprlib
 import math
 import numbers
+import functools
+import operator
 
 
 class Vector:
@@ -72,6 +74,13 @@ class Vector:
                 msg = error.format(cls_name=cls.__name__, attr_name=name)
                 raise AttributeError(msg)
         super().__setattr__(name, value)
+
+    def __eq__(self, other):
+        return tuple(self) == tuple(other)
+
+    def __hash__(self):
+        hashes = (hash(x) for x in self_.components)
+        return functools.reduce(operator.xor, hashes, 0)
 
     @classmethod
     def frombytes(cls, octets):
