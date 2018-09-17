@@ -35,10 +35,15 @@ class Vector:
     def __bool__(self):
         return bool(abs(self))
 
+    def __len__(self):
+        return len(self._components)
+
+    def __getitem__(self, index):
+        return self._components[index]
+
     @classmethod
     def frombytes(cls, octets):
         typecode = chr(octets[0])
         memv = memoryview(octets[1:]).cast(typecode)
         return cls(memv)
-
 
