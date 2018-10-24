@@ -26,8 +26,11 @@ class Quantity:
 
 
 class LineItem:
+    print(Quantity.counter)
     weight = Quantity()
+    print(Quantity.counter)
     price = Quantity()
+    print(Quantity.counter)
 
     def __init__(self, description, weight, price):
         self.description = description
@@ -51,5 +54,3 @@ if __name__ == '__main__':
         print('ITEM #{}'.format(i+1))
         for key in keys:
             print(getattr(items[i], key))
-        print(Quantity.counter)
-    print(Quantity.counter)
