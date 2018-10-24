@@ -3,19 +3,31 @@
 
 class Quantity:
 
-    def __init__(self, storage_name):
-        self.storage_name = storage_name
+    counter = 0
+
+    def __init__(self):
+        cls = self.__class__
+        prefix = cls.__name__
+        index = cls.counter
+        self.storage_name = '_{}#{}'.format(prefix, index)
+        cls.counter += 1
+
+    def __get__(self, instance, owner):
+        if instance is None:
+            return self
+        else:
+            return getattr(instance, self.storage_name)
 
     def __set__(self, instance, value):
         if value > 0:
-            instance.__dict__[self.storage_name] = value
+            setattr(instance, self.storage_name, value)
         else:
             raise ValueError('value must be > 0')
 
 
 class LineItem:
-    weight = Quantity('weight')
-    price = Quantity('price')
+    weight = Quantity()
+    price = Quantity()
 
     def __init__(self, description, weight, price):
         self.description = description
@@ -39,4 +51,5 @@ if __name__ == '__main__':
         print('ITEM #{}'.format(i+1))
         for key in keys:
             print(getattr(items[i], key))
-        print(LineItem.weight, LineItem.price)
+        print(Quantity.counter)
+    print(Quantity.counter)

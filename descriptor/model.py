@@ -12,6 +12,7 @@ class AutoStorage:
         prefix = cls.__name__
         index = cls.__counter
         self.storage_name = '_{}#{}'.format(prefix, index)
+        cls.__counter += 1
 
     def __get__(self, instance, owner):
         if instance is None:
