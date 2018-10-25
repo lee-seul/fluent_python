@@ -39,4 +39,4 @@ if __name__ == '__main__':
         print('ITEM #{}'.format(i+1))
         for key in keys:
             print(getattr(items[i], key))
-        print(LineItem.weight, LineItem.price)
+    print(item1.weight, item2.price)

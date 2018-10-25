@@ -54,3 +54,4 @@ if __name__ == '__main__':
         print('ITEM #{}'.format(i+1))
         for key in keys:
             print(getattr(items[i], key))
+
